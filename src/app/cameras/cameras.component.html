@@ -1,0 +1,39 @@
+<h1>Информационная панель по камерам</h1>
+<mat-tab-group>
+  <mat-tab label="Прошивка для камеры">
+<div style="padding-top: 20px">
+    <button mat-raised-button color="primary">Добавить камеру</button>
+</div>
+    <mat-form-field style="padding-top:20px">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Введите название камеры">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Position Column -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Название камеры </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="version">
+        <th mat-header-cell *matHeaderCellDef> Версия прошивки </th>
+        <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef> Ссылка для скачивания </th>
+        <td mat-cell *matCellDef="let element"> <a [href]="element.link"> <button mat-raised-button>Скачать</button></a> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Тест"> Content 2 </mat-tab>
+  <mat-tab label="Тес"> Content 3 </mat-tab>
+</mat-tab-group>

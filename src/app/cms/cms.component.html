@@ -1,0 +1,116 @@
+<h1>
+  Панель формирования текста для CMS
+</h1>
+<mat-horizontal-stepper [linear]="!isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" >
+      <ng-template matStepLabel>Причина проведения</ng-template>
+      <mat-form-field style="min-width:400px !important;">
+        <textarea matInput placeholder="Описание проблемы" formControlName="firstCtrl" required></textarea>
+      </mat-form-field>
+      <mat-form-field style="min-width:400px !important; margin-left: 20px">
+        <textarea matInput placeholder="Пример" readonly>Не работает камера, перезагрузка оборудования не помогла, требуется выезд специалистов.</textarea>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button  color="primary" matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="fiveFormGroup">
+    <form [formGroup]="fiveFormGroup">
+      <ng-template matStepLabel>Интернет Ростелеком</ng-template>
+      <mat-form-field style="min-width:400px !important;">
+        <h4>Интернет предоставляет Ростелеком?</h4>
+        <mat-select [(value)]="selected" formControlName="firstCtrl" required>
+          <mat-option value="yes">Да</mat-option>
+          <mat-option value="no">Нет</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Назад</button>
+        <button mat-raised-button  color="primary" matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Список камер (s/n, модель)</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="S/N камеры" minlength="9" maxlength="9" formControlName="firstCtrl" required>
+        <mat-hint align="end">{{secondFormGroup.value.firstCtrl.length}} / 9</mat-hint>
+      </mat-form-field>
+      <mat-form-field style="min-width:50px !important; margin-left: 20px">
+      <input matInput placeholder="модель" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <div>
+        <button mat-raised-button matStepperPrevious>Назад</button>
+        <button mat-raised-button  color="primary" matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="sixFormGroup">
+    <form [formGroup]="sixFormGroup">
+      <ng-template matStepLabel>Адрес</ng-template>
+      <mat-form-field style="min-width:400px !important;">
+        <input matInput placeholder="Адрес нахождения камер" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Назад</button>
+        <button mat-raised-button color="primary" matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Организация</ng-template>
+      <mat-form-field style="min-width:400px !important;">
+        <input matInput placeholder="Название организации" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <mat-form-field style="min-width:400px !important; margin-left: 20px">
+        <input matInput placeholder="ИЛС" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Назад</button>
+        <button mat-raised-button color="primary" matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="fourFormGroup">
+    <form [formGroup]="fourFormGroup">
+      <ng-template matStepLabel>Контактные данные</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Телефон" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <mat-form-field style="margin-left: 20px">
+        <input matInput placeholder="ФИО" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Назад</button>
+        <button mat-raised-button matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Готово</ng-template>
+    Текст успешно сформирован.
+    <div style="margin-top:10px">
+      <button mat-raised-button matStepperPrevious>Назад</button>
+      <button style="margin-left: 15px" mat-raised-button  color="warn" (click)="formInfo()">Получить данные</button>
+      <!--<button style="margin-left: 15px" mat-raised-button  color="primary">Очистить поля</button>-->
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<mat-card *ngIf="complete" style="margin-top:20px" >
+  <ul>
+    <li>Описание проблемы: {{firstFormGroup.value.firstCtrl}}</li>
+    <li *ngIf="selected == 'yes'">Интернет: Ростелеком</li>
+    <li *ngIf="selected == 'no'">Интернет: Сторонний провайдер</li>
+    <li>Камеры: S/N {{secondFormGroup.value.firstCtrl}}, модель {{secondFormGroup.value.secondCtrl}}</li>
+    <li>Адрес: {{sixFormGroup.value.firstCtrl}}</li>
+    <li>Организация: {{thirdFormGroup.value.firstCtrl}}, ИЛС: {{thirdFormGroup.value.secondCtrl}}</li>
+    <li>КД: телефон: {{fourFormGroup.value.firstCtrl}}, {{fourFormGroup.value.secondCtrl}}</li>
+  </ul>
+</mat-card>
