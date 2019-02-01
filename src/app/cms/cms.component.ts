@@ -16,7 +16,6 @@ export class CmsComponent implements OnInit {
   complete: boolean;
   records: string[] = ['Record 1', 'Record 2', 'Record 3', 'Record 4', 'Record 5'];
   selected = 'yes';
-  checked = true;
 
   constructor(private _formBuilder: FormBuilder) {}
 
