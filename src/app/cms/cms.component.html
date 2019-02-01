@@ -38,13 +38,15 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Список камер (s/n, модель)</ng-template>
-      <mat-form-field>
+      <!--One Camera -->
+      <mat-form-field >
         <input matInput placeholder="S/N камеры" minlength="9" maxlength="9" formControlName="firstCtrl" required>
         <mat-hint align="end">{{secondFormGroup.value.firstCtrl.length}} / 9</mat-hint>
       </mat-form-field>
       <mat-form-field style="min-width:50px !important; margin-left: 20px">
-      <input matInput placeholder="модель" formControlName="secondCtrl" required>
+      <input matInput placeholder="Модель" formControlName="secondCtrl" required>
       </mat-form-field>
+      <!--One Camera -->
       <mat-divider></mat-divider>
       <div>
         <button mat-raised-button matStepperPrevious>Назад</button>
