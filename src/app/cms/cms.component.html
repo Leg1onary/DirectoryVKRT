@@ -1,7 +1,9 @@
 <h1>
   Панель формирования текста для CMS
 </h1>
-<mat-horizontal-stepper [linear]="!isLinear" #stepper>
+<mat-tab-group>
+  <mat-tab label="Формирование заявки">
+<mat-vertical-stepper [linear]="!isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup" >
       <ng-template matStepLabel>Причина проведения</ng-template>
@@ -101,7 +103,7 @@
       <!--<button style="margin-left: 15px" mat-raised-button  color="primary">Очистить поля</button>-->
     </div>
   </mat-step>
-</mat-horizontal-stepper>
+</mat-vertical-stepper>
 
 <mat-card *ngIf="complete" style="margin-top:20px" >
   <ul>
@@ -114,3 +116,13 @@
     <li>КД: телефон: {{fourFormGroup.value.firstCtrl}}, {{fourFormGroup.value.secondCtrl}}</li>
   </ul>
 </mat-card>
+  </mat-tab>
+  <mat-tab label="История">
+    <mat-selection-list #history>
+      <mat-list-option *ngFor="let record of records">
+        {{record}}
+      </mat-list-option>
+    </mat-selection-list>
+    <button *ngIf="history.selectedOptions.selected.length > 0" mat-raised-button color="warn">Удалить</button>
+  </mat-tab>
+</mat-tab-group>

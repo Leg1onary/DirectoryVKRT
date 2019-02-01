@@ -14,7 +14,7 @@ export class CmsComponent implements OnInit {
   fiveFormGroup: FormGroup;
   sixFormGroup: FormGroup;
   complete: boolean;
-
+  records: string[] = ['Record 1', 'Record 2', 'Record 3', 'Record 4', 'Record 5'];
   selected = 'yes';
 
   constructor(private _formBuilder: FormBuilder) {}
@@ -44,6 +44,7 @@ export class CmsComponent implements OnInit {
       firstCtrl: ['', Validators.required],
     });
   }
+
   formInfo() {
     if (this.firstFormGroup.value.firstCtrl !== '') {
       if (this.secondFormGroup.value.firstCtrl !== '' && this.secondFormGroup.value.secondCtrl !== '') {

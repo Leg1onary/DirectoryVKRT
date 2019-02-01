@@ -16,7 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {
   MatCardModule, MatDividerModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatOptionModule,
   MatSelectModule,
   MatStepperModule,
@@ -51,7 +51,8 @@ import {
     MatTableModule,
     MatCardModule,
     MatSelectModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
