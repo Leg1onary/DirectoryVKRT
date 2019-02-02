@@ -11,6 +11,7 @@ import { CamerasComponent } from './cameras/cameras.component';
 import { CmsComponent } from './cms/cms.component';
 import { HomeComponent } from './home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -23,7 +24,6 @@ import {
   MatTableModule,
   MatTabsModule
 } from '@angular/material';
-
 
 
 @NgModule({
@@ -40,6 +40,7 @@ import {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
