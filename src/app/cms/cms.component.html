@@ -38,16 +38,20 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Список камер (s/n, модель)</ng-template>
+      <mat-checkbox style="margin-bottom:15px;" [(ngModel)]="checked" formControlName="thirdCtrl">Не работают все камеры.</mat-checkbox>
+      <br>
+      <div *ngIf="!checked" >
       <!--One Camera -->
       <mat-form-field >
-        <input matInput placeholder="S/N камеры" minlength="9" maxlength="9" formControlName="firstCtrl" required>
+        <input matInput placeholder="S/N камеры" minlength="9" maxlength="9" formControlName="firstCtrl">
         <mat-hint align="end">{{secondFormGroup.value.firstCtrl.length}} / 9</mat-hint>
       </mat-form-field>
-      <mat-form-field style="min-width:50px !important; margin-left: 20px">
-      <input matInput placeholder="Модель" formControlName="secondCtrl" required>
+      <mat-form-field *ngIf="!checked" style="min-width:50px !important; margin-left: 20px">
+      <input matInput placeholder="Модель" formControlName="secondCtrl">
       </mat-form-field>
       <!--One Camera -->
       <mat-divider></mat-divider>
+      </div>
       <div>
         <button mat-raised-button matStepperPrevious>Назад</button>
         <button mat-raised-button  color="primary" matStepperNext>Далее</button>
@@ -112,7 +116,8 @@
     <li>Описание проблемы: {{firstFormGroup.value.firstCtrl}}</li>
     <li *ngIf="selected == 'yes'">Интернет: Ростелеком</li>
     <li *ngIf="selected == 'no'">Интернет: Сторонний провайдер</li>
-    <li>Камеры: S/N {{secondFormGroup.value.firstCtrl}}, модель {{secondFormGroup.value.secondCtrl}}</li>
+    <li *ngIf="!checked">Камеры: S/N {{secondFormGroup.value.firstCtrl}}, модель {{secondFormGroup.value.secondCtrl}}</li>
+    <li *ngIf="checked">Не работают все камеры.</li>
     <li>Адрес: {{sixFormGroup.value.firstCtrl}}</li>
     <li>Организация: {{thirdFormGroup.value.firstCtrl}}, ИЛС: {{thirdFormGroup.value.secondCtrl}}</li>
     <li>КД: телефон: {{fourFormGroup.value.firstCtrl}}, {{fourFormGroup.value.secondCtrl}}</li>

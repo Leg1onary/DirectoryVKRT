@@ -16,7 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {
-  MatCardModule, MatDividerModule,
+  MatCardModule, MatCheckboxModule, MatDividerModule,
   MatInputModule, MatListModule,
   MatOptionModule,
   MatSelectModule,
@@ -54,7 +54,8 @@ import {
     MatCardModule,
     MatSelectModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

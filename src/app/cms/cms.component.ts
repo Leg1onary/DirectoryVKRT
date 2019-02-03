@@ -16,6 +16,7 @@ export class CmsComponent implements OnInit {
   complete: boolean;
   records: string[] = ['Record 1', 'Record 2', 'Record 3', 'Record 4', 'Record 5'];
   selected = 'yes';
+  checked: false;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -26,8 +27,9 @@ export class CmsComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-      secondCtrl: ['', Validators.required]
+      firstCtrl: [''],
+      secondCtrl: [''],
+      thirdCtrl: ['']
     });
     this.thirdFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
@@ -46,18 +48,6 @@ export class CmsComponent implements OnInit {
   }
 
   formInfo() {
-    if (this.firstFormGroup.value.firstCtrl !== '') {
-      if (this.secondFormGroup.value.firstCtrl !== '' && this.secondFormGroup.value.secondCtrl !== '') {
-        if (this.thirdFormGroup.value.firstCtrl !== '' && this.thirdFormGroup.value.secondCtrl !== '') {
-          if (this.fourFormGroup.value.firstCtrl !== '' && this.fourFormGroup.value.secondCtrl !== '') {
-            if (this.fiveFormGroup.value.firstCtrl !== '') {
-              if (this.sixFormGroup.value.firstCtrl !== '') {
-                this.complete = true;
-              }
-            }
-          }
-        }
-      }
-    }
+    this.complete = true;
   }
 }
