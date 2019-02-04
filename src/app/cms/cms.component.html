@@ -52,7 +52,7 @@
       <!--One Camera -->
       <mat-divider></mat-divider>
       </div>
-      <div>
+      <div style="margin-top: 15px;">
         <button mat-raised-button matStepperPrevious>Назад</button>
         <button mat-raised-button  color="primary" matStepperNext>Далее</button>
       </div>
@@ -123,13 +123,5 @@
     <li>КД: телефон: {{fourFormGroup.value.firstCtrl}}, {{fourFormGroup.value.secondCtrl}}</li>
   </ul>
 </mat-card>
-  </mat-tab>
-  <mat-tab label="История">
-    <mat-selection-list #history>
-      <mat-list-option *ngFor="let record of records">
-        {{record}}
-      </mat-list-option>
-    </mat-selection-list>
-    <button *ngIf="history.selectedOptions.selected.length > 0" mat-raised-button color="warn">Удалить</button>
   </mat-tab>
 </mat-tab-group>

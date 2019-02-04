@@ -1,3 +1,25 @@
-<p>
-  home works!
-</p>
+<h2>Список задач</h2>
+
+<form class="input-form">
+  <mat-form-field style="width:50%">
+    <input matInput  placeholder="Введите текст задачи" [formControl]="inputFormControl" [errorStateMatcher]="matcher" #itemTitle>
+    <mat-error *ngIf="inputFormControl.hasError('required')">
+      Текст задачи <strong>не заполнен</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" style="margin-left: 25px" *ngIf="inputFormControl.value.length > 0" (click)="onAdd(itemTitle)">Добавить</button>
+</form>
+<div *ngIf="visibleList" >
+<mat-nav-list>
+  <mat-card>
+  <mat-list-item *ngFor="let item of toDoListArray">
+      <a matLine [class.item-success]="item.isChecked">{{ item.title }} </a> <span *ngIf="item.isChecked" style="color:green; margin-right: 25px">Выполнено</span>
+        <mat-checkbox (click)="alterCheck(item.$key,item.isChecked)" [(ngModel)]="item.isChecked"></mat-checkbox>
+        <button mat-icon-button (click)="onDelete(item.$key)">
+          <mat-icon style="font-size:18px">delete</mat-icon>
+         </button>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+  </mat-card>
+</mat-nav-list>
+</div>
