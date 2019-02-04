@@ -16,11 +16,13 @@ export class CmsComponent implements OnInit {
   complete: boolean;
   selected = 'yes';
   checked: false;
+  CameraArray: any[];
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.complete = false;
+    this.CameraArray = [];
 
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
@@ -44,6 +46,15 @@ export class CmsComponent implements OnInit {
     this.sixFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
     });
+  }
+
+  addCamera(sn: string, model: string) {
+    this.CameraArray.push({sn, model});
+    this.secondFormGroup.value.secondCtrl = '';
+    this.secondFormGroup.value.firstCtrl = '';
+  }
+  DeleteItem(index) {
+    this.CameraArray.splice(index, 1);
   }
 
   formInfo() {

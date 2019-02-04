@@ -38,20 +38,28 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Список камер (s/n, модель)</ng-template>
-      <mat-checkbox style="margin-bottom:15px;" [(ngModel)]="checked" formControlName="thirdCtrl">Не работают все камеры.</mat-checkbox>
+      <mat-checkbox style="margin-bottom:25px;" [(ngModel)]="checked" formControlName="thirdCtrl">Не работают все камеры.</mat-checkbox>
       <br>
       <div *ngIf="!checked" >
       <!--One Camera -->
       <mat-form-field >
-        <input matInput placeholder="S/N камеры" minlength="9" maxlength="9" formControlName="firstCtrl">
-        <mat-hint align="end">{{secondFormGroup.value.firstCtrl.length}} / 9</mat-hint>
+        <input matInput placeholder="S/N камеры" maxlength="9" formControlName="firstCtrl" [(ngModel)]="secondFormGroup.value.firstCtrl">
       </mat-form-field>
-      <mat-form-field *ngIf="!checked" style="min-width:50px !important; margin-left: 20px">
-      <input matInput placeholder="Модель" formControlName="secondCtrl">
+      <mat-form-field style="min-width:50px !important; margin-left: 20px">
+      <input matInput placeholder="Модель" formControlName="secondCtrl" [(ngModel)]="secondFormGroup.value.secondCtrl">
       </mat-form-field>
+        <button mat-raised-button color="accent" style="margin-left:20px" (click)="addCamera(secondFormGroup.value.firstCtrl, secondFormGroup.value.secondCtrl)">Еще одна камера</button>
       <!--One Camera -->
-      <mat-divider></mat-divider>
       </div>
+      <mat-list *ngIf="!checked">
+        <mat-list-item *ngFor="let camera of CameraArray">
+          {{CameraArray.indexOf(camera)+1}}) S/N: {{camera.sn}}, Модель: {{camera.model}}, {{camera.$key}}
+          <button mat-icon-button (click)="DeleteItem(CameraArray.indexOf(camera))">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
       <div style="margin-top: 15px;">
         <button mat-raised-button matStepperPrevious>Назад</button>
         <button mat-raised-button  color="primary" matStepperNext>Далее</button>
@@ -116,7 +124,13 @@
     <li>Описание проблемы: {{firstFormGroup.value.firstCtrl}}</li>
     <li *ngIf="selected == 'yes'">Интернет: Ростелеком</li>
     <li *ngIf="selected == 'no'">Интернет: Сторонний провайдер</li>
-    <li *ngIf="!checked">Камеры: S/N {{secondFormGroup.value.firstCtrl}}, модель {{secondFormGroup.value.secondCtrl}}</li>
+    <li *ngIf="!checked">Камеры:
+      <mat-list>
+        <mat-list-item *ngFor="let camera of CameraArray">
+          {{CameraArray.indexOf(camera)+1}}) S/N: {{camera.sn}}, Модель: {{camera.model}}
+        </mat-list-item>
+      </mat-list>
+    </li>
     <li *ngIf="checked">Не работают все камеры.</li>
     <li>Адрес: {{sixFormGroup.value.firstCtrl}}</li>
     <li>Организация: {{thirdFormGroup.value.firstCtrl}}, ИЛС: {{thirdFormGroup.value.secondCtrl}}</li>
