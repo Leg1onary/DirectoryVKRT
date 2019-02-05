@@ -23,11 +23,13 @@ import {
   MatCardModule, MatCheckboxModule, MatDividerModule, MatGridListModule, MatIconModule,
   MatInputModule, MatListModule,
   MatOptionModule,
-  MatSelectModule, MatSnackBarModule,
+  MatSelectModule, MatSnackBarModule, MatSortModule,
   MatStepperModule,
   MatTableModule,
-  MatTabsModule
+  MatTabsModule,
+  MatPaginatorModule
 } from '@angular/material';
+import { CitiesmrfListComponent } from './cms/citiesmrf-list/citiesmrf-list.component';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import {
     SettingsComponent,
     CamerasComponent,
     CmsComponent,
-    HomeComponent
+    HomeComponent,
+    CitiesmrfListComponent
   ],
   imports: [
     BrowserModule,
@@ -65,10 +68,11 @@ import {
     MatCheckboxModule,
     MatIconModule,
     MatGridListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export class PizzaPartyAppModule { }
