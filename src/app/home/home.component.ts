@@ -25,9 +25,14 @@ export class HomeComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
   visibleList: boolean;
+  username: string;
   constructor(private toDoService: TodoService) { }
 
+  dateNow: Date = new Date();
+  format: 'HH:mm:ss';
+
   ngOnInit() {
+    this.username = 'Sergey Sholokhov';
     this.toDoService.getToDoList().snapshotChanges()
       .subscribe(item => {
         this.toDoListArray = [];
@@ -46,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   onAdd(itemTitle) {
-    this.toDoService.addTitle(itemTitle.value);
+    this.toDoService.addTitle(itemTitle.value, this.username);
     itemTitle.value = null;
   }
   alterCheck($key: string, isChecked) {
@@ -58,5 +63,4 @@ export class HomeComponent implements OnInit {
       this.visibleList = false;
     }
   }
-
 }

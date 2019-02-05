@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { DaDataConfig, DaDataType} from '@kolkov/ngx-dadata';
+import {MrfService} from './shared/mrf.service';
+import {CitiesService} from './shared/cities.service';
+import {NotificationService} from './shared/notification.service';
 
 @Component({
   selector: 'app-cms',
@@ -17,8 +21,15 @@ export class CmsComponent implements OnInit {
   selected = 'yes';
   checked: false;
   CameraArray: any[];
+  configAddress: DaDataConfig = {
+    apiKey: '06bb5a438e1971e7f6c99d0e32cccc7b11c6da91',
+    type: DaDataType.address,
+  };
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder,
+              private service: CitiesService,
+              private departmentService: MrfService,
+              private notificationService: NotificationService) {}
 
   ngOnInit() {
     this.complete = false;
@@ -34,7 +45,8 @@ export class CmsComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['', Validators.required],
+      thirdCtrl: ['', Validators.required]
     });
     this.fourFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
@@ -44,8 +56,23 @@ export class CmsComponent implements OnInit {
       firstCtrl: ['', Validators.required],
     });
     this.sixFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
+      currentAddress: ['', Validators.required]
     });
+    this.service.getCity();
+  }
+  onClear() {
+    this.service.form.reset();
+    this.service.initializeFormGroup();
+
+  }
+
+  onSubmit() {
+    if (this.service.form.valid) {
+      this.service.insertCity(this.service.form.value);
+      this.service.form.reset();
+      this.service.initializeFormGroup();
+      this.notificationService.success('Успешно добавлено');
+    }
   }
 
   addCamera(sn: string, model: string) {
@@ -59,5 +86,7 @@ export class CmsComponent implements OnInit {
 
   formInfo() {
     this.complete = true;
+    console.log(this.CameraArray.length === 0);
   }
+
 }

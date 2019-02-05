@@ -12,6 +12,7 @@ import { CmsComponent } from './cms/cms.component';
 import { HomeComponent } from './home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxDaDataModule} from '@kolkov/ngx-dadata';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { environment } from '../environments/environment';
@@ -19,10 +20,10 @@ import { environment } from '../environments/environment';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {
-  MatCardModule, MatCheckboxModule, MatDividerModule, MatIconModule,
+  MatCardModule, MatCheckboxModule, MatDividerModule, MatGridListModule, MatIconModule,
   MatInputModule, MatListModule,
   MatOptionModule,
-  MatSelectModule,
+  MatSelectModule, MatSnackBarModule,
   MatStepperModule,
   MatTableModule,
   MatTabsModule
@@ -44,6 +45,7 @@ import {
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgxDaDataModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     MatFormFieldModule,
@@ -61,7 +63,9 @@ import {
     MatDividerModule,
     MatListModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

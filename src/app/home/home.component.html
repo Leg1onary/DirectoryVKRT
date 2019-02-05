@@ -11,15 +11,20 @@
 </form>
 <div *ngIf="visibleList" >
 <mat-nav-list>
-  <mat-card>
-  <mat-list-item *ngFor="let item of toDoListArray">
-      <a matLine [class.item-success]="item.isChecked">{{ item.title }} </a> <span *ngIf="item.isChecked" style="color:green; margin-right: 25px">Выполнено</span>
-        <mat-checkbox (click)="alterCheck(item.$key,item.isChecked)" [(ngModel)]="item.isChecked"></mat-checkbox>
+  <mat-card-content *ngFor="let item of toDoListArray">
+  <mat-list-item>
+      <span>{{dateNow | date : 'HH:mm dd/MM'}}</span>
+      <a matLine [class.item-success]="item.isChecked">{{ item.title }} </a>
+      <span *ngIf="item.isChecked" style="color:green; margin-right: 25px">Выполнено</span>
+      <mat-checkbox (click)="alterCheck(item.$key,item.isChecked)" [(ngModel)]="item.isChecked"></mat-checkbox>
         <button mat-icon-button (click)="onDelete(item.$key)">
-          <mat-icon style="font-size:18px">delete</mat-icon>
+          <mat-icon>delete_forever</mat-icon>
          </button>
     <mat-divider></mat-divider>
+    <!-- <br />
+     <div>{{dateNow | date : 'HH:mm dd/MM'}}<br>{{username}}</div>
+     <mat-divider></mat-divider>-->
   </mat-list-item>
-  </mat-card>
+  </mat-card-content>
 </mat-nav-list>
 </div>
