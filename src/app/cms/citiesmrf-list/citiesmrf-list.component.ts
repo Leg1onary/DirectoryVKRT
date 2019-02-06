@@ -10,8 +10,9 @@ import {AngularFireList} from 'angularfire2/database';
   styleUrls: ['./citiesmrf-list.component.scss']
 })
 export class CitiesmrfListComponent implements OnInit {
-  mrfList: AngularFireList<any>;
+  listData: AngularFireList<any>;
   array = [];
+  displayedColumns: string[] = ['Name', 'MRF', 'actions'];
   constructor(private service: CitiesService) { }
 
   ngOnInit() {
@@ -22,8 +23,9 @@ export class CitiesmrfListComponent implements OnInit {
             $key: item.key,
             ...item.payload.val()
           };
-          this.listData = new MatTableDataSource(array);
         });
+        // @ts-ignore
+        this.listData = new MatTableDataSource(array);
       });
   }
 
