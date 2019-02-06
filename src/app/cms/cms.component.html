@@ -145,38 +145,28 @@
 </mat-card>
   </mat-tab>
   <mat-tab label="Добавление города к МРФ">
-
-
-    <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
-      <mat-grid-list cols="2" rowHeight="300px">
-        <mat-grid-tile>
-          <div class="controles-container">
+    <form style="margin-top:25px;" [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
             <input type="hidden" formControlName="$key">
             <mat-form-field>
-              <input formControlName="Name" matInput placeholder="Full Name*">
-              <mat-error>This field is mandatory.</mat-error>
+              <input formControlName="Name" matInput placeholder="Название города">
             </mat-form-field>
-          </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div class="controles-container">
-            <mat-form-field>
-              <mat-select formControlName="department" placeholder="Department">
-                <mat-option>None</mat-option>
+            <mat-form-field style="margin-left:25px;">
+              <mat-select formControlName="department" placeholder="Выберите МРФ">
+                <mat-option>Не определено</mat-option>
                 <ng-container *ngFor="let department of departmentService.array">
                   <mat-option value="{{department.$key}}">{{department.name}}</mat-option>
                 </ng-container>
               </mat-select>
             </mat-form-field>
             <div class="button-row">
-              <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
-              <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Добавить</button>
+              <button style="margin-left:20px" mat-raised-button color="warn" (click)="onClear()">Сбросить</button>
             </div>
-          </div>
-        </mat-grid-tile>
-      </mat-grid-list>
     </form>
+  </mat-tab>
 
-
+ <!--test-->
+  <mat-tab label="Таблица соответствия">
+<app-citiesmrf-list></app-citiesmrf-list>
   </mat-tab>
 </mat-tab-group>
