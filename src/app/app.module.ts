@@ -28,7 +28,7 @@ import {
   MatStepperModule,
   MatTableModule,
   MatTabsModule,
-  MatPaginatorModule
+  MatPaginatorModule, MatDialogModule
 } from '@angular/material';
 import { CitiesmrfListComponent } from './cms/citiesmrf-list/citiesmrf-list.component';
 
@@ -71,9 +71,11 @@ import { CitiesmrfListComponent } from './cms/citiesmrf-list/citiesmrf-list.comp
     MatGridListModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CitiesmrfListComponent],
+  bootstrap: [AppComponent],
+  entryComponents: [CitiesmrfListComponent]
 })
 export class AppModule { }

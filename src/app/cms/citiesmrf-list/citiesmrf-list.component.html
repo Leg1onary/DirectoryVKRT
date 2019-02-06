@@ -1,7 +1,13 @@
 <div class="search-div">
-  <button mat-raised-button>
+  <button mat-raised-button (click)="onCreate()">
     <mat-icon>add</mat-icon>Добавить
   </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Найти ..." autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey"  (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
 </div>
 <div>
   <mat-table [dataSource]="listData" matSort>
@@ -9,9 +15,9 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Город</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.Name}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="MRF">
+    <ng-container matColumnDef="mfrName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>МРФ</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.department}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.mfrName}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -21,12 +27,12 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="loading">
-      <mat-footer-cell *matFooterCellDef colspan="6">
+      <mat-footer-cell *matFooterCellDef colspan="3">
         Загрузка данных...
       </mat-footer-cell>
     </ng-container>
     <ng-container matColumnDef="noData">
-      <mat-footer-cell *matFooterCellDef colspan="6">
+      <mat-footer-cell *matFooterCellDef colspan="3">
         Данные отсутствуют.
       </mat-footer-cell>
     </ng-container>
