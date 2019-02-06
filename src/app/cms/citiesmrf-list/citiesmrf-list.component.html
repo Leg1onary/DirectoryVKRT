@@ -1,11 +1,16 @@
+<div class="search-div">
+  <button mat-raised-button>
+    <mat-icon>add</mat-icon>Добавить
+  </button>
+</div>
 <div>
-  <mat-table [dataSource]="listData">
+  <mat-table [dataSource]="listData" matSort>
     <ng-container matColumnDef="Name">
-      <mat-header-cell *matHeaderCellDef>Город</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Город</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.Name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="MRF">
-      <mat-header-cell *matHeaderCellDef>МРФ</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>МРФ</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.department}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="actions">
@@ -30,4 +35,5 @@
     <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
     <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
   </mat-table>
+  <mat-paginator [pageSizeOptions]="[5,10,25,100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
 </div>

@@ -10,11 +10,12 @@ import {AngularFireList} from 'angularfire2/database';
   styleUrls: ['./citiesmrf-list.component.scss']
 })
 export class CitiesmrfListComponent implements OnInit {
+  constructor(private service: CitiesService) { }
   listData: AngularFireList<any>;
   array = [];
   displayedColumns: string[] = ['Name', 'MRF', 'actions'];
-  constructor(private service: CitiesService) { }
-
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
     this.service.getCity().subscribe(
       list => {
@@ -26,6 +27,10 @@ export class CitiesmrfListComponent implements OnInit {
         });
         // @ts-ignore
         this.listData = new MatTableDataSource(array);
+        // @ts-ignore
+        this.listData.sort = this.sort;
+        // @ts-ignore
+        this.listData.paginator = this.paginator;
       });
   }
 

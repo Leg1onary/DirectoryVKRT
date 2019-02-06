@@ -12,6 +12,7 @@ import { CmsComponent } from './cms/cms.component';
 import { HomeComponent } from './home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+// @ts-ignore
 import {NgxDaDataModule} from '@kolkov/ngx-dadata';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
