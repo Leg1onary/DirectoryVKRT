@@ -49,6 +49,6 @@ export class CitiesService {
     this.citiesList.remove($key);
   }
   populateForm(city) {
-    this.form.setValue(_.omit(city,'mfrName'));
+    this.form.setValue(_.omit(city, 'mfrName'));
   }
 }

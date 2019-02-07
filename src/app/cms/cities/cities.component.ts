@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {CitiesService} from '../shared/cities.service';
-import {MrfService} from '../shared/mrf.service';
-import {NotificationService} from '../shared/notification.service';
+import {CitiesService} from '../../shared/cities.service';
+import {MrfService} from '../../shared/mrf.service';
+import {NotificationService} from '../../shared/notification.service';
 import {MatDialogRef} from '@angular/material';
 
 @Component({

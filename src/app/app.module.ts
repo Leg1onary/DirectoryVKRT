@@ -32,8 +32,9 @@ import {
 } from '@angular/material';
 import { CitiesmrfListComponent } from './cms/citiesmrf-list/citiesmrf-list.component';
 import { CitiesComponent } from './cms/cities/cities.component';
-import {CitiesService} from './cms/shared/cities.service';
-import {MrfService} from './cms/shared/mrf.service';
+import {CitiesService} from './shared/cities.service';
+import {MrfService} from './shared/mrf.service';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {MrfService} from './cms/shared/mrf.service';
     CmsComponent,
     HomeComponent,
     CitiesmrfListComponent,
-    CitiesComponent
+    CitiesComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,6 @@ import {MrfService} from './cms/shared/mrf.service';
   providers: [CitiesService, MrfService, { provide: MatDialogRef, useValue: {} }
     , { provide: MAT_DIALOG_DATA, useValue: [] }],
   bootstrap: [AppComponent],
-  entryComponents: [CitiesComponent]
+  entryComponents: [CitiesComponent, MatConfirmDialogComponent]
 })
 export class AppModule { }

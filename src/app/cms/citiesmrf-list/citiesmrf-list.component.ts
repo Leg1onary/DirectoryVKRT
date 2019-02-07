@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
-import {CitiesService} from '../shared/cities.service';
-import {MrfService} from '../shared/mrf.service';
+import {CitiesService} from '../../shared/cities.service';
+import {MrfService} from '../../shared/mrf.service';
 import {AngularFireList} from 'angularfire2/database';
 import {CitiesComponent} from '../cities/cities.component';
-import {NotificationService} from '../shared/notification.service';
+import {NotificationService} from '../../shared/notification.service';
+import {DialogService} from '../../shared/dialog.service';
 
 @Component({
   selector: 'app-citiesmrf-list',
@@ -15,7 +16,8 @@ export class CitiesmrfListComponent implements OnInit {
   constructor(private service: CitiesService,
               private mfrService: MrfService,
               private dialog: MatDialog,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService,
+              private dialogService: DialogService) { }
   listData: AngularFireList<any>;
   displayedColumns: string[] = ['Name', 'mfrName', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
@@ -74,10 +76,13 @@ export class CitiesmrfListComponent implements OnInit {
     this.dialog.open(CitiesComponent, dialogConfig);
   }
   onDelete($key) {
-    if (confirm('Вы уверены, что нужно удалить данную запись?')) {
-      this.service.deleteCity($key);
-      this.notificationService.warn('! Успешно удалено');
-    }
+    this.dialogService.openConfirmDialog('Вы уверены, что нужно удалить данную запись?')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          this.service.deleteCity($key);
+          this.notificationService.warn('Успешно удалено');
+        }
+    });
   }
 
 }
