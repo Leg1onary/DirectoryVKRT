@@ -28,9 +28,12 @@ import {
   MatStepperModule,
   MatTableModule,
   MatTabsModule,
-  MatPaginatorModule, MatDialogModule
+  MatPaginatorModule, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MatToolbarModule
 } from '@angular/material';
 import { CitiesmrfListComponent } from './cms/citiesmrf-list/citiesmrf-list.component';
+import { CitiesComponent } from './cms/cities/cities.component';
+import {CitiesService} from './cms/shared/cities.service';
+import {MrfService} from './cms/shared/mrf.service';
 
 
 @NgModule({
@@ -42,7 +45,8 @@ import { CitiesmrfListComponent } from './cms/citiesmrf-list/citiesmrf-list.comp
     CamerasComponent,
     CmsComponent,
     HomeComponent,
-    CitiesmrfListComponent
+    CitiesmrfListComponent,
+    CitiesComponent
   ],
   imports: [
     BrowserModule,
@@ -72,10 +76,12 @@ import { CitiesmrfListComponent } from './cms/citiesmrf-list/citiesmrf-list.comp
     MatSnackBarModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule
   ],
-  providers: [CitiesmrfListComponent],
+  providers: [CitiesService, MrfService, { provide: MatDialogRef, useValue: {} }
+    , { provide: MAT_DIALOG_DATA, useValue: [] }],
   bootstrap: [AppComponent],
-  entryComponents: [CitiesmrfListComponent]
+  entryComponents: [CitiesComponent]
 })
 export class AppModule { }

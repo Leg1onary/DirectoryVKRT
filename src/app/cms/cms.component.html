@@ -143,29 +143,7 @@
     <li>КД: телефон: {{fourFormGroup.value.firstCtrl}}, {{fourFormGroup.value.secondCtrl}}</li>
   </ul>
 </mat-card>
-  </mat-tab>
-  <mat-tab label="Добавление города к МРФ">
-    <form style="margin-top:25px;" [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
-            <input type="hidden" formControlName="$key">
-            <mat-form-field>
-              <input formControlName="Name" matInput placeholder="Название города">
-            </mat-form-field>
-            <mat-form-field style="margin-left:25px;">
-              <mat-select formControlName="department" placeholder="Выберите МРФ">
-                <mat-option>Не определено</mat-option>
-                <ng-container *ngFor="let department of departmentService.array">
-                  <mat-option value="{{department.$key}}">{{department.name}}</mat-option>
-                </ng-container>
-              </mat-select>
-            </mat-form-field>
-            <div class="button-row">
-              <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Добавить</button>
-              <button style="margin-left:20px" mat-raised-button color="warn" (click)="onClear()">Сбросить</button>
-            </div>
-    </form>
-  </mat-tab>
 
- <!--test-->
   <mat-tab label="Таблица соответствия">
 <app-citiesmrf-list></app-citiesmrf-list>
   </mat-tab>

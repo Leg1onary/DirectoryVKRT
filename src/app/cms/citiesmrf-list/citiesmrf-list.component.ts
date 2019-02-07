@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import {CitiesService} from '../shared/cities.service';
 import {MrfService} from '../shared/mrf.service';
 import {AngularFireList} from 'angularfire2/database';
-import {MatDialog, MatDialogConfig} from '@angular/material';
-import {CmsComponent} from '../cms.component';
+import {CitiesComponent} from '../cities/cities.component';
+import {NotificationService} from '../shared/notification.service';
 
 @Component({
   selector: 'app-citiesmrf-list',
@@ -14,7 +14,8 @@ import {CmsComponent} from '../cms.component';
 export class CitiesmrfListComponent implements OnInit {
   constructor(private service: CitiesService,
               private mfrService: MrfService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private notificationService: NotificationService) { }
   listData: AngularFireList<any>;
   displayedColumns: string[] = ['Name', 'mfrName', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
@@ -57,7 +58,26 @@ export class CitiesmrfListComponent implements OnInit {
   }
 
   onCreate() {
-    this.dialog.open(CmsComponent);
+    this.service.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+   // dialogConfig.width = '60%';
+    this.dialog.open(CitiesComponent, dialogConfig);
+  }
+  onEdit(row) {
+    this.service.populateForm(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.width = '60%';
+    this.dialog.open(CitiesComponent, dialogConfig);
+  }
+  onDelete($key) {
+    if (confirm('Вы уверены, что нужно удалить данную запись?')) {
+      this.service.deleteCity($key);
+      this.notificationService.warn('! Успешно удалено');
+    }
   }
 
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DaDataConfig, DaDataType} from '@kolkov/ngx-dadata';
-import {MrfService} from './shared/mrf.service';
-import {CitiesService} from './shared/cities.service';
-import {NotificationService} from './shared/notification.service';
 
 @Component({
   selector: 'app-cms',
@@ -26,10 +23,7 @@ export class CmsComponent implements OnInit {
     type: DaDataType.address,
   };
 
-  constructor(private _formBuilder: FormBuilder,
-              private service: CitiesService,
-              private departmentService: MrfService,
-              private notificationService: NotificationService) {}
+  constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.complete = false;
@@ -58,21 +52,6 @@ export class CmsComponent implements OnInit {
     this.sixFormGroup = this._formBuilder.group({
       currentAddress: ['', Validators.required]
     });
-    this.service.getCity();
-  }
-  onClear() {
-    this.service.form.reset();
-    this.service.initializeFormGroup();
-
-  }
-
-  onSubmit() {
-    if (this.service.form.valid) {
-      this.service.insertCity(this.service.form.value);
-      this.service.form.reset();
-      this.service.initializeFormGroup();
-      this.notificationService.success('Успешно добавлено');
-    }
   }
 
   addCamera(sn: string, model: string) {
