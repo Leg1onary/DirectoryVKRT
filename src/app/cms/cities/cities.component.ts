@@ -33,7 +33,6 @@ export class CitiesComponent implements OnInit {
       } else {
         this.service.updateCity(this.service.form.value);
       }
-      this.service.insertCity(this.service.form.value);
       this.service.form.reset();
       this.service.initializeFormGroup();
       this.notificationService.success('Успешно добавлено');
