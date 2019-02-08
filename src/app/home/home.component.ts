@@ -28,11 +28,8 @@ export class HomeComponent implements OnInit {
   username: string;
   constructor(private toDoService: TodoService) { }
 
-  dateNow: Date = new Date();
-  format: 'HH:mm:ss';
-
   ngOnInit() {
-    this.username = 'Sergey Sholokhov';
+    this.username = 'Unknown user';
     this.toDoService.getToDoList().snapshotChanges()
       .subscribe(item => {
         this.toDoListArray = [];

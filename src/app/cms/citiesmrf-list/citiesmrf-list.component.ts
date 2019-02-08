@@ -62,15 +62,15 @@ export class CitiesmrfListComponent implements OnInit {
   onCreate() {
     this.service.initializeFormGroup();
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-   // dialogConfig.width = '60%';
+    // dialogConfig.width = '60%';
     this.dialog.open(CitiesComponent, dialogConfig);
   }
   onEdit(row) {
     this.service.populateForm(row);
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     // dialogConfig.width = '60%';
     this.dialog.open(CitiesComponent, dialogConfig);

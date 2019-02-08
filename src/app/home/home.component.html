@@ -12,19 +12,17 @@
 <div *ngIf="visibleList" >
 <mat-nav-list>
   <mat-card-content *ngFor="let item of toDoListArray">
-  <mat-list-item>
+    <mat-list-item>
       <a matLine [class.item-success]="item.isChecked">{{ item.title }} </a>
       <span *ngIf="item.isChecked" style="color:green; margin-right: 25px">Выполнено</span>
-      <span>{{item.dateAdd | date : 'HH:mm dd/MM'}}</span>
       <mat-checkbox (click)="alterCheck(item.$key,item.isChecked)" [(ngModel)]="item.isChecked"></mat-checkbox>
-        <button mat-icon-button (click)="onDelete(item.$key)">
-          <mat-icon>delete_forever</mat-icon>
-         </button>
-    <mat-divider></mat-divider>
-    <!-- <br />
-     <div>{{dateNow | date : 'HH:mm dd/MM'}}<br>{{username}}</div>
-     <mat-divider></mat-divider>-->
-  </mat-list-item>
+      <button mat-icon-button (click)="onDelete(item.$key)"><mat-icon>delete_forever</mat-icon></button>
+      <p matLine style="padding:5px; font-style: italic;">
+        <span style="padding-right: 10px;"> Добавлено: {{item.dateAdd | date : 'HH:mm dd.MM'}}</span>
+        <span>Пользователь: {{username}}</span>
+      </p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
   </mat-card-content>
 </mat-nav-list>
 </div>

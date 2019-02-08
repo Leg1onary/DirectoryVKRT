@@ -65,7 +65,13 @@ export class CmsComponent implements OnInit {
 
   formInfo() {
     this.complete = true;
-    console.log(this.CameraArray.length === 0);
   }
+  addressInfo() {
+    console.log('--config--');
+    console.log(this.configAddress);
+    console.log('--value--');
+    console.log(this.sixFormGroup.value.currentAddress);
+  }
+
 
 }

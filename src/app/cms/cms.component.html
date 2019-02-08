@@ -72,7 +72,7 @@
         <ngx-da-data placeholder="Адрес нахождения камер" formControlName="currentAddress" [config]="configAddress" required></ngx-da-data>
       <div>
         <button mat-raised-button matStepperPrevious>Назад</button>
-        <button mat-raised-button color="primary" matStepperNext>Далее</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="addressInfo()">Далее</button>
       </div>
     </form>
   </mat-step>
@@ -138,7 +138,7 @@
     <li *ngIf="checked">Не работают все камеры.</li>
     <li>Адрес: {{sixFormGroup.value.currentAddress}}</li>
     <li>Организация: {{thirdFormGroup.value.firstCtrl}}</li>
-    <li>email: {{thirdFormGroup.value.firstCtrl}} </li>
+    <li>email: {{thirdFormGroup.value.secondCtrl}} </li>
     <li>ИЛС: {{thirdFormGroup.value.thirdCtrl}}</li>
     <li>КД: телефон: {{fourFormGroup.value.firstCtrl}}, {{fourFormGroup.value.secondCtrl}}</li>
   </ul>
