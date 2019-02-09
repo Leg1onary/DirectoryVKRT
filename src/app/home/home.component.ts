@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../shared/todo.service';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {NotificationService} from '../shared/notification.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   visibleList: boolean;
   username: string;
-  constructor(private toDoService: TodoService) { }
+  constructor(private toDoService: TodoService,
+              private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.username = 'Unknown user';
@@ -50,6 +52,7 @@ export class HomeComponent implements OnInit {
   onAdd(itemTitle) {
     this.toDoService.addTitle(itemTitle.value, this.username);
     itemTitle.value = null;
+    this.notificationService.success(':: Успешно добавлено');
   }
   alterCheck($key: string, isChecked) {
     this.toDoService.checkOrUnCheckTitle($key, !isChecked);
@@ -59,5 +62,6 @@ export class HomeComponent implements OnInit {
     if (this.toDoListArray.length === 1) {
       this.visibleList = false;
     }
+    this.notificationService.warn('! Запись удалена');
   }
 }
