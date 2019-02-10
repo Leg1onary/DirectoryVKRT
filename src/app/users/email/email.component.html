@@ -1,0 +1,23 @@
+<div class="login-form">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Форма авторизации</mat-card-title>
+      <mat-card-subtitle>Авторизация по Email / Password</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+        <mat-form-field class="full-width">
+          <input matInput type="text" placeholder="Email" (ngModel)="email" name="email" class="txt" required><br>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formData.valid" class="basic-btn">Войти</button>
+        <br><br>
+        Нет аккаунта?  <a routerLink="/signup" routerLinkActive="active" class="alc"><strong> Зарегистрироваться!</strong></a>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

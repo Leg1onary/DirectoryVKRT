@@ -3,6 +3,7 @@ import { TodoService } from '../shared/todo.service';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {NotificationService} from '../shared/notification.service';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -26,12 +27,15 @@ export class HomeComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
   visibleList: boolean;
-  username: string;
+  currentUser: string;
+  checked: boolean;
   constructor(private toDoService: TodoService,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService,
+              private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.username = 'Unknown user';
+    this.checked = false;
+    this.currentUser = this.afAuth.auth.currentUser.email;
     this.toDoService.getToDoList().snapshotChanges()
       .subscribe(item => {
         this.toDoListArray = [];
@@ -39,8 +43,10 @@ export class HomeComponent implements OnInit {
           let x: Object;
           x = element.payload.toJSON();
           x['$key'] = element.key;
+          if (this.currentUser == x['username'] || x['forAll']) {
           this.toDoListArray.push(x);
           this.visibleList = true;
+          }
         })
         // sort array isChecked false -> true
         this.toDoListArray.sort((a, b) => {
@@ -49,11 +55,12 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  onAdd(itemTitle) {
-    this.toDoService.addTitle(itemTitle.value, this.username);
+  onAdd(itemTitle, forAll) {
+    this.toDoService.addTitle(itemTitle.value, this.afAuth.auth.currentUser.email, forAll);
     itemTitle.value = null;
     this.notificationService.success(':: Успешно добавлено');
   }
+
   alterCheck($key: string, isChecked) {
     this.toDoService.checkOrUnCheckTitle($key, !isChecked);
   }

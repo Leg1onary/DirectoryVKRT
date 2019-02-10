@@ -1,0 +1,16 @@
+<div class="login-form">
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Форма авторизации</mat-card-title>
+    <mat-card-subtitle>Каким образом хотите авторизоваться?</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="loginFB()" id="facebook" >Facebook</button>
+    <button mat-raised-button (click)="loginGoogle()" id="google" >Google</button>
+    <button mat-raised-button routerLink="/login-email" id="email">Email/Password</button><br><br>
+    Нет аккаунта?  <a routerLink="/singup" routerLinkActive="active" class="alc"><strong> Зарегистрироваться!</strong></a>
+  </mat-card-actions>
+</mat-card>
+</div>

@@ -16,6 +16,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgxDaDataModule} from '@kolkov/ngx-dadata';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -35,6 +37,12 @@ import { CitiesComponent } from './cms/cities/cities.component';
 import {CitiesService} from './shared/cities.service';
 import {MrfService} from './shared/mrf.service';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
+import {CmshistoryComponent} from './cms/cmshistory/cmshistory.component';
+import { LoginComponent } from './users/login/login.component';
+import { EmailComponent } from './users/email/email.component';
+import { SignupComponent } from './users/signup/signup.component';
+import {AuthGuardService} from './shared/auth-guard.service';
+import { ProfileComponent } from './users/profile/profile.component';
 
 
 @NgModule({
@@ -48,7 +56,12 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     HomeComponent,
     CitiesmrfListComponent,
     CitiesComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
+    CmshistoryComponent,
+    LoginComponent,
+    EmailComponent,
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +71,8 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     NgxDaDataModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
@@ -81,7 +96,7 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     MatDialogModule,
     MatToolbarModule
   ],
-  providers: [CitiesService, MrfService, { provide: MatDialogRef, useValue: {} }
+  providers: [CitiesService, AuthGuardService, MrfService, { provide: MatDialogRef, useValue: {} }
     , { provide: MAT_DIALOG_DATA, useValue: [] }],
   bootstrap: [AppComponent],
   entryComponents: [CitiesComponent, MatConfirmDialogComponent]

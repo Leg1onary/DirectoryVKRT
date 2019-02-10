@@ -1,4 +1,4 @@
-<nav>
+<nav  *ngIf="router.url != '/login' && router.url != '/signup' && router.url != '/login-email'">
   <ul>
     <li>
       <a routerLink=""[class.activated] = "router.url == '/'">
@@ -13,6 +13,16 @@
     <li>
       <a routerLink="cms" [class.activated] = "router.url == '/cms'">
         <i class="material-icons">message</i><b>CMS</b>
+      </a>
+    </li>
+    <li>
+      <a routerLink="profile" [class.activated] = "router.url == '/profile'">
+        <i class="material-icons">account_box</i><b>Профиль</b>
+      </a>
+    </li>
+    <li>
+      <a routerLink="login" (click)="logout()">
+        <i class="material-icons">exit_to_app</i><b>Выйти</b>
       </a>
     </li>
     <!--   <li>

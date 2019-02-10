@@ -7,7 +7,8 @@
       Текст задачи <strong>не заполнен</strong>
     </mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary" style="margin-left: 25px" *ngIf="inputFormControl.value.length > 0" (click)="onAdd(itemTitle)">Добавить</button>
+  <mat-checkbox style="padding-left: 15px; padding-right: 15px;" [(ngModel)]="checked" name="checked">Видимая для всех</mat-checkbox>
+  <button mat-raised-button color="primary" style="margin-left: 25px" *ngIf="inputFormControl.value.length > 0" (click)="onAdd(itemTitle, checked)">Добавить</button>
 </form>
 <div *ngIf="visibleList" >
 <mat-nav-list>
@@ -19,7 +20,8 @@
       <button mat-icon-button (click)="onDelete(item.$key)"><mat-icon>delete_forever</mat-icon></button>
       <p matLine style="padding:5px; font-style: italic;">
         <span style="padding-right: 10px;"> Добавлено: {{item.dateAdd | date : 'HH:mm dd.MM'}}</span>
-        <span>Пользователь: {{username}}</span>
+        <span>Пользователь: {{item.username}}</span>
+        <span *ngIf="item.forAll == true" style="padding-left: 15px; color: red" >Видимая для всех</span>
       </p>
       <mat-divider></mat-divider>
     </mat-list-item>

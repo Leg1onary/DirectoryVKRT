@@ -12,11 +12,12 @@ export class TodoService {
     this.toDoList = this.firebasedb.list('toDoList');
     return this.toDoList;
   }
-  addTitle(title: string, username: string) {
+  addTitle(title: string, username: string, forAll: boolean) {
     this.toDoList.push({
       title: title,
       username: username,
       dateAdd: Date(),
+      forAll: forAll,
       isChecked: false
     });
   }

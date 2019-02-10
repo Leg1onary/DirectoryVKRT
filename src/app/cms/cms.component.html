@@ -72,7 +72,7 @@
         <ngx-da-data placeholder="Адрес нахождения камер" formControlName="currentAddress" [config]="configAddress" required></ngx-da-data>
       <div>
         <button mat-raised-button matStepperPrevious>Назад</button>
-        <button mat-raised-button color="primary" matStepperNext (click)="addressInfo()">Далее</button>
+        <button mat-raised-button color="primary" matStepperNext>Далее</button>
       </div>
     </form>
   </mat-step>
@@ -144,7 +144,10 @@
   </ul>
 </mat-card>
   </mat-tab>
-  <mat-tab label="Таблица соответствия">
+  <mat-tab label="Таблица соответствия городов">
 <app-citiesmrf-list></app-citiesmrf-list>
+  </mat-tab>
+  <mat-tab label="История CMS">
+    <app-cmshistory></app-cmshistory>
   </mat-tab>
 </mat-tab-group>

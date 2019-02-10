@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
+import {AngularFireAuth} from 'angularfire2/auth';
+import { auth } from 'firebase';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,10 +12,12 @@ export class SidebarComponent implements OnInit {
 
   currentUrl: string;
 
-  constructor(private router: Router) {
+  constructor(public  afAuth: AngularFireAuth, private router: Router) {
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
   }
 
   ngOnInit() {}
-
+  logout() {
+    this.afAuth.auth.signOut();
+  }
 }
