@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DaDataConfig, DaDataType} from '@kolkov/ngx-dadata';
+import {NotificationService} from '../shared/notification.service';
 
 @Component({
   selector: 'app-cms',
@@ -23,7 +24,8 @@ export class CmsComponent implements OnInit {
     type: DaDataType.address,
   };
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder,
+              private notificationService: NotificationService) {}
 
   ngOnInit() {
     this.complete = false;
@@ -65,5 +67,6 @@ export class CmsComponent implements OnInit {
 
   formInfo() {
     this.complete = true;
+    this.notificationService.success('Данные заполнены');
   }
 }

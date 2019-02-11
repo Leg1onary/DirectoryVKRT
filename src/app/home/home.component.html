@@ -19,8 +19,7 @@
       <mat-checkbox (click)="alterCheck(item.$key,item.isChecked)" [(ngModel)]="item.isChecked"></mat-checkbox>
       <button mat-icon-button (click)="onDelete(item.$key)"><mat-icon>delete_forever</mat-icon></button>
       <p matLine style="padding:5px; font-style: italic;">
-        <span style="padding-right: 10px;"> Добавлено: {{item.dateAdd | date : 'HH:mm dd.MM'}}</span>
-        <span>Пользователь: {{item.username}}</span>
+        <span style="padding-right: 10px;"> Добавлено: {{item.dateAdd | date : 'HH:mm dd.MM'}} ({{item.username}})</span>
         <span *ngIf="item.forAll == true" style="padding-left: 15px; color: red" >Видимая для всех</span>
       </p>
       <mat-divider></mat-divider>
