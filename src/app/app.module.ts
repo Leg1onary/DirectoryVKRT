@@ -45,6 +45,7 @@ import {AuthGuardService} from './shared/auth-guard.service';
 import { ProfileComponent } from './users/profile/profile.component';
 import { CmsHelementComponent } from './cms/cms-helement/cms-helement.component';
 import {CmshistoryService} from './shared/cmshistory.service';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import {CmshistoryService} from './shared/cmshistory.service';
     EmailComponent,
     SignupComponent,
     ProfileComponent,
-    CmsHelementComponent
+    CmsHelementComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
