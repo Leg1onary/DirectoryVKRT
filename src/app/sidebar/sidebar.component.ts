@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
-import { auth } from 'firebase';
+import {DialogService} from '../shared/dialog.service';
+import {NotificationService} from '../shared/notification.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,12 +13,22 @@ export class SidebarComponent implements OnInit {
 
   currentUrl: string;
 
-  constructor(public  afAuth: AngularFireAuth, private router: Router) {
+  constructor(public  afAuth: AngularFireAuth, private router: Router,
+              private notificationService: NotificationService,
+              private dialogService: DialogService) {
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
   }
 
   ngOnInit() {}
   logout() {
-    this.afAuth.auth.signOut();
+    this.dialogService.openConfirmDialog('Вы уверены, что хотите выйти?')
+      .afterClosed().subscribe(res => {
+      if (res) {
+        this.notificationService.warn('Пользователь разлогинен');
+        this.afAuth.auth.currentUser.refreshToken;
+        this.afAuth.auth.signOut();
+        this.router.navigate(['login']);
+      }
+    });
   }
 }

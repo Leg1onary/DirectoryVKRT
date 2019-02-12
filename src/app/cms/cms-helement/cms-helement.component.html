@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <span>{{service.form.controls['$key'].value?"Редактирование":"Создание"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+<form style="margin-top:25px;" [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <input type="hidden" formControlName="$key">
+  <mat-form-field>
+    <input formControlName="CmsNumber" matInput placeholder="Номер CMS">
+  </mat-form-field>
+  <div class="button-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Выполнить</button>
+    <button style="margin-left:20px" mat-raised-button color="warn" (click)="onClose()">Отмена</button>
+  </div>
+</form>

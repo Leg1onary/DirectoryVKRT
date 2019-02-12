@@ -7,7 +7,7 @@
       Текст задачи <strong>не заполнен</strong>
     </mat-error>
   </mat-form-field>
-  <mat-checkbox style="padding-left: 15px; padding-right: 15px;" [(ngModel)]="checked" name="checked">Видимая для всех</mat-checkbox>
+  <mat-checkbox *ngIf="inputFormControl.value.length > 0" style="padding-left: 15px; padding-right: 15px;" [(ngModel)]="checked" name="checked">Видимая для всех</mat-checkbox>
   <button mat-raised-button color="primary" style="margin-left: 25px" *ngIf="inputFormControl.value.length > 0" (click)="onAdd(itemTitle, checked)">Добавить</button>
 </form>
 <div *ngIf="visibleList" >

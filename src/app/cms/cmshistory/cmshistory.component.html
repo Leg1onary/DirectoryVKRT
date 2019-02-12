@@ -1,3 +1,58 @@
-<p>
-  cmshistory works!
-</p>
+<div class="search-div">
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Найти ..." autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey"  (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div>
+  <mat-table [dataSource]="listData" matSort>
+    <ng-container matColumnDef="CmsNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Номер CMS</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.CmsNumber}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Organization">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Организация</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.Organization}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Address">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Адрес</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.Address}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.Email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="UserAdd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Добавлено</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.UserAdd}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="DateAdd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Дата добавления</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.DateAdd | date : 'HH:mm dd.MM'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="onDelete(row.$key)"><mat-icon>delete_outline</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="3">
+        Загрузка данных...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="3">
+        Данные отсутствуют.
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[10,25,100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>

@@ -43,6 +43,8 @@ import { EmailComponent } from './users/email/email.component';
 import { SignupComponent } from './users/signup/signup.component';
 import {AuthGuardService} from './shared/auth-guard.service';
 import { ProfileComponent } from './users/profile/profile.component';
+import { CmsHelementComponent } from './cms/cms-helement/cms-helement.component';
+import {CmshistoryService} from './shared/cmshistory.service';
 
 
 @NgModule({
@@ -61,7 +63,8 @@ import { ProfileComponent } from './users/profile/profile.component';
     LoginComponent,
     EmailComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    CmsHelementComponent
   ],
   imports: [
     BrowserModule,
@@ -96,9 +99,9 @@ import { ProfileComponent } from './users/profile/profile.component';
     MatDialogModule,
     MatToolbarModule
   ],
-  providers: [CitiesService, AuthGuardService, MrfService, { provide: MatDialogRef, useValue: {} }
+  providers: [CitiesService, AuthGuardService, CmshistoryService, MrfService, { provide: MatDialogRef, useValue: {} }
     , { provide: MAT_DIALOG_DATA, useValue: [] }],
   bootstrap: [AppComponent],
-  entryComponents: [CitiesComponent, MatConfirmDialogComponent]
+  entryComponents: [CitiesComponent, CmsHelementComponent, MatConfirmDialogComponent]
 })
 export class AppModule { }

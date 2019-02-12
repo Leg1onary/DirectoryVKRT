@@ -30,6 +30,7 @@ export class EmailComponent implements OnInit {
         }).catch(
         (err) => {
           this.error = err;
+          console.log(this.error);
           if (this.error.code === 'auth/invalid-email') {
             this.notificationService.warn('! Некорректный email');
           }
