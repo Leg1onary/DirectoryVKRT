@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth';
 import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
@@ -9,7 +8,7 @@ import {NavigationEnd, Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   currentUrl: string;
-  constructor(private router: Router) {
+  constructor(public router: Router) {
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
   }
 

@@ -27,6 +27,7 @@ export class CmsComponent implements OnInit {
   };
   cms: any;
   currentUser: any;
+  isLinear: boolean;
 
   constructor(private _formBuilder: FormBuilder,
               private notificationService: NotificationService,

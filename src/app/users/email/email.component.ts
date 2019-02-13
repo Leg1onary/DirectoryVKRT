@@ -10,6 +10,8 @@ import {NotificationService} from '../../shared/notification.service';
 
 })
 export class EmailComponent implements OnInit {
+  email: null;
+  password: null;
   state: string;
   error: any;
   constructor(public  afAuth: AngularFireAuth, private router: Router,

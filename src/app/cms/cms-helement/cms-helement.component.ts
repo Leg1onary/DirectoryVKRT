@@ -10,7 +10,7 @@ import {MatDialogRef} from '@angular/material';
 })
 export class CmsHelementComponent implements OnInit {
 
-  constructor(private service: CmshistoryService,
+  constructor(public service: CmshistoryService,
               private notificationService: NotificationService,
               public dialogRef: MatDialogRef<CmsHelementComponent>) { }
 

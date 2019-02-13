@@ -7,11 +7,11 @@
     <mat-card-content>
       <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
         <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Email" (ngModel)="email" name="email" class="txt" required><br>
+          <input matInput type="text" placeholder="Email" [(ngModel)]="email" name="email" class="txt" required><br>
         </mat-form-field>
         <br>
         <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" class="txt" required>
         </mat-form-field>
         <br>
         <button mat-raised-button color="primary" type="submit" [disabled]="!formData.valid" class="basic-btn">Создать уч.запись</button>

@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
 
   currentUrl: string;
 
-  constructor(public  afAuth: AngularFireAuth, private router: Router,
+  constructor(public  afAuth: AngularFireAuth, public router: Router,
               private notificationService: NotificationService,
               private dialogService: DialogService) {
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
@@ -25,7 +25,6 @@ export class SidebarComponent implements OnInit {
       .afterClosed().subscribe(res => {
       if (res) {
         this.notificationService.warn('Пользователь разлогинен');
-        this.afAuth.auth.currentUser.refreshToken;
         this.afAuth.auth.signOut();
         this.router.navigate(['login']);
       }

@@ -12,8 +12,8 @@ import {MatDialogRef} from '@angular/material';
 })
 export class CitiesComponent implements OnInit {
 
-  constructor(private service: CitiesService,
-              private departmentService: MrfService,
+  constructor(public service: CitiesService,
+              public departmentService: MrfService,
               private notificationService: NotificationService,
               public dialogRef: MatDialogRef<CitiesComponent>) { }
 
